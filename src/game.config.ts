@@ -199,7 +199,7 @@ export const GameConfig: IGameConfig = {
                 alignment: 'left',
             },
             {
-                text: `© ${new Date().getFullYear()} Sean McLaggan`,
+                text: `© ${new Date().getFullYear()} Chen Shmilovich`,
                 position: { x: 1250, y: 800 },
                 font: '20px Bookman',
                 color: 'white',
@@ -241,7 +241,7 @@ export const GameConfig: IGameConfig = {
                         alignment: 'left',
                     },
                     {
-                        text: `© ${new Date().getFullYear()} Sean McLaggan`,
+                        text: `© ${new Date().getFullYear()} Chen Shmilovich`,
                         position: { x: 1250, y: 800 },
                         font: '20px Bookman',
                         color: 'white',
