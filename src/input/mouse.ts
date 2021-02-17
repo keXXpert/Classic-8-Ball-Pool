@@ -8,18 +8,22 @@ class Mouse_Singleton {
 
     private _buttonStates: ButtonState[] = [];
     private _position: Vector2;
+    private _pressedPosition: Vector2;
 
     //------Properties------//
 
     public get position() {
         return Vector2.copy(this._position);
     }
+    public get pressedPosition() {
+        return Vector2.copy(this._pressedPosition);
+    }
 
     //------Constructor------//
 
     constructor() {
 
-        for(let i = 0 ; i < 3 ; i ++ ) {
+        for (let i = 0; i < 3; i++) {
             this._buttonStates[i] = new ButtonState();
         }
 
@@ -28,6 +32,7 @@ class Mouse_Singleton {
         document.addEventListener('mousemove', (event) => this.handleMouseMove(event));
         document.addEventListener('mousedown', (event) => this.handleMouseDown(event));
         document.addEventListener('mouseup', (event) => this.handleMouseUp(event));
+        window.oncontextmenu = () => false                                          // to prevent context menu popup on right mouse click
     }
 
     //------Private Methods------//
@@ -40,27 +45,35 @@ class Mouse_Singleton {
 
     private handleMouseDown(event: MouseEvent) {
         this._buttonStates[event.button].down = true;
+        this._buttonStates[event.button].released = false;
         this._buttonStates[event.button].pressed = true;
+        this._pressedPosition = this._position
     }
 
     private handleMouseUp(event: MouseEvent) {
         this._buttonStates[event.button].down = false;
+        this._buttonStates[event.button].released = true;
     }
 
     //------Public Methods------//
 
-    public reset() : void {
-        for(let i = 0 ; i < 3 ; i++ ) {
+    public reset(): void {
+        for (let i = 0; i < 3; i++) {
             this._buttonStates[i].pressed = false;
+            this._buttonStates[i].released = false;
         }
     }
 
     public isDown(button: number): boolean {
         return this._buttonStates[button].down;
     }
-    
+
     public isPressed(button: number): boolean {
         return this._buttonStates[button].pressed;
+    }
+
+    public isReleased(button: number): boolean {
+        return this._buttonStates[button].released;
     }
 }
 

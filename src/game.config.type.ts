@@ -8,6 +8,9 @@ export interface IGameConfig {
     loadingScreenTimeout:         number;
     timeoutToLoadSubMenu:         number;
     loadingScreenImagePosition:   IVector2;
+    hitMarketPosition:            IVector2;
+    hitMarketDiameter:            number;
+    hitPowerIndicatorPosition:    IVector2;
     labels:                       ILabelsConfig;
     redBallsPositions:            IVector2[];
     yellowBallsPositions:         IVector2[];
@@ -31,6 +34,32 @@ export interface IVector2 {
     y: number;
 }
 
+export interface IOrient {
+    phi:    number;
+    theta:  number;
+}
+
+export interface IRotation {
+    x: number;
+    y: number;
+    z: number;
+}
+
+// this is added to support 3d
+export interface IVector3 {
+    x: number;
+    y: number;
+    z: number;
+}
+
+// this is added to support 3d
+export interface IQuater4 {
+    x: number;
+    y: number;
+    z: number;
+    w: number;
+}
+
 export interface ILabelsConfig {
     currentPlayer: ILabel;
     overalScores:  ILabel[];
@@ -47,8 +76,12 @@ export interface IAssetsConfig {
 }
 
 export interface IPhysicsConfig {
-    friction:      number;
-    collisionLoss: number;
+    friction:                   number;
+    collisionLoss:              number;
+    rotationFriction:           number;
+    counterRotationFriction:    number;
+    rotationToVelocity:         number;
+    powerToRotationRatio:       number;
 }
 
 export interface ITableConfig {
@@ -74,12 +107,17 @@ export interface IStickConfig {
 }
 
 export interface IInputConfig {
-    mouseSelectButton:    number;
-    mouseShootButton:     number;
-    mousePlaceBallButton: number;
-    increaseShotPowerKey: number;
-    decreaseShotPowerKey: number;
-    toggleMenuKey:        number;
+    mouseSelectButton:          number;
+    mouseShootButton:           number;
+    mousePlaceBallButton:       number;
+    mouseToggleHitlineButton:   number;
+    // increaseShotPowerKey: number;
+    // decreaseShotPowerKey: number;
+    toggleMenuKey:              number;
+    upHitKey:                   number;
+    downHitKey:                 number;
+    leftHitKey:                 number;
+    rightHitKey:                number;
 }
 
 export interface IMenuConfig {

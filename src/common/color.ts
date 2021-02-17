@@ -5,3 +5,8 @@ export enum Color {
     red = '#B62A2F',
     yellow = '#FECA34'
 }
+
+// added ball type enum
+export enum BallTypeEnum {
+    Unknown, Cue, Stripe, Solid, Eight, Red, Color
+}
